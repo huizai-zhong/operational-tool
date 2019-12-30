@@ -26,9 +26,9 @@ def remote_comm(host, passwd, command):
     error = stderr.read()
     # 如果有输出和错误则打印出来
     if out:
-        print('[%s] OUT : \n %s' % (host, out.decode('utf8')))
+        print('[\033[32;1m%s\033[0m] OUT : \n %s' % (host, out.decode('utf8')))
     if error:
-        print('[%s] ERROR : \n %s' % (host, error.decode('utf8')))
+        print('[\033[31;1m%s\033[0m] ERROR : \n %s' % (host, error.decode('utf8')))
     # 程序结束
     ssh.close()
     
@@ -58,4 +58,3 @@ if __name__ == "__main__":
         t = threading.Thread(target=remote_comm, args=(ip, passwd, command))
         # 启动
         t.start()
-
